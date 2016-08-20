@@ -1,4 +1,6 @@
-<html>
+package main
+
+var htmlTemplate string = `<html>
 <style>
 @import url(https://fonts.googleapis.com/css?family=Roboto:700);
 html,
@@ -32,7 +34,7 @@ margin-left: -400px;
 .pulse {
 width: 400px;
 height: 400px;
-background-image: url('gopher.gif');
+background-image: url(data:image/gif;base64,{{.Image}});
 border: 1px solid rgba(255, 255, 255, 0.12);
 border-radius: 50%;
 margin-left: 50%;
@@ -142,4 +144,4 @@ window.onload = function(e) {
 <h1>GOLANG UNIKERNELS</h1>
 
 </div>
-</html>
+</html>`

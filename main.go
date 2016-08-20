@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/base64"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -8,11 +9,12 @@ import (
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
 
-	t := template.Must(template.New("index.html").ParseFiles(
-		"index.html",
-	))
+	str := base64.StdEncoding.EncodeToString(iconData)
 
-	err := t.Execute(w, nil)
+	t := template.Must(template.New("index.html").Parse(htmlTemplate))
+
+	data := map[string]interface{}{"Image": str}
+	err := t.Execute(w, data)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -20,11 +22,7 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	//	http.HandleFunc("/", helloHandler)
-
-	http.Handle("/", http.FileServer(http.Dir("./")))
-
-	//	http.Handle("/", http.StripPrefix("./public/", http.FileServer(http.Dir("./public"))))
+	http.HandleFunc("/", helloHandler)
 
 	http.ListenAndServe(":3000", nil)
 }
