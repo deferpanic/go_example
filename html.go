@@ -1,6 +1,6 @@
 package main
 
-var htmlTemplate string = `<html>
+var HtmlTemplate string = `<html>
 <style>
 @import url(https://fonts.googleapis.com/css?family=Roboto:700);
 html,

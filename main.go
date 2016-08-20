@@ -9,9 +9,9 @@ import (
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
 
-	str := base64.StdEncoding.EncodeToString(iconData)
+	str := base64.StdEncoding.EncodeToString(IconData)
 
-	t := template.Must(template.New("index.html").Parse(htmlTemplate))
+	t := template.Must(template.New("index.html").Parse(HtmlTemplate))
 
 	data := map[string]interface{}{"Image": str}
 	err := t.Execute(w, data)
